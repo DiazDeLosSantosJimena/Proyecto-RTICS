@@ -49,7 +49,7 @@ class TypeofusersController extends Controller
      */
     public function show($id)
     {
-        $typeofuser = typeofusers::find($id);
+        $typeofuser = typeofusers::findOrFail($id);
         return view('Typeofusers.show')->with('typeofusers',$typeofuser);
     }
 
@@ -61,7 +61,7 @@ class TypeofusersController extends Controller
      */
     public function edit($id)
     {
-        $typeofuser = typeofusers::find($id);
+        $typeofuser = typeofusers::findOrFail($id);
         return view('Typeofusers.edit')->with('typeofusers', $typeofuser);
     }
 
@@ -74,7 +74,7 @@ class TypeofusersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $typeofuser= typeofusers::find($id);
+        $typeofuser= typeofusers::findOrFail($id);
         $input=$request->all();
         $typeofuser->update($input);
         return redirect('typeofusers')->with('info','Se ha actualizado el registro correctamente');
@@ -88,7 +88,9 @@ class TypeofusersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $typeofuser = typeofusers::findOrFail($id);
+        $typeofuser->delete();
+        return redirect('typeofusers')->with('danger','correctamente el tipo de usuario');
     }
 }
 

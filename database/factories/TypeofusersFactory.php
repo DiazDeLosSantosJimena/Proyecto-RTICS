@@ -17,7 +17,7 @@ class TypeofusersFactory extends Factory
     public function definition()
     {
         return [
-                'name' => $this->faker->name(),
+                'name' =>  $this->faker->randomElement(['Director','Profesor de tiempo completo','Empleado de mantenimiento','Administrador']),
             ];
     }
 }

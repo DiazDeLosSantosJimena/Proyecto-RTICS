@@ -53,7 +53,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = users::find($id);
+        $user = users::findOrFail($id);
         return view('Users.show')->with('users',$user);
     }
 
@@ -67,7 +67,7 @@ class UsersController extends Controller
     {
         $typeofusers = typeofusers::all('id','name');
         $directions = directions::all('id','name');
-        $user = users::find($id);
+        $user = users::findOrFail($id);
         return view('Users.edit', compact('typeofusers'), compact('directions'))->with('users', $user);
     }
 
@@ -80,7 +80,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user= users::find($id);
+        $user= users::findOrFail($id);
         $input=$request->all();
         $user->update($input);
         return redirect('users')->with('message','Se ha actualizado el registro correctamente');
@@ -94,7 +94,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = users::findOrFail($id);
+        $user->delete();
+        return redirect('users')->with('danger','correctamente el usuario');
     }
 }
 

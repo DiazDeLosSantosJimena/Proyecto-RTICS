@@ -51,7 +51,7 @@
                 <select class="form-control form-select" aria-label="Default select example" name="direction_id">
                     <option selected>Elige la dirección</option>
                         @foreach($directions as $direction)   
-                    <option value={{$direction->id}}>{{$direction->name}}</option>
+                    <option value={{$direction->id}}>{{$direction->teaching}}</option>
                        @endforeach
                     </select>
                 <!-- <input class="form-control" type="text" id="direction_id" name="direction_id"> -->

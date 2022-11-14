@@ -14,8 +14,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    
 </div>
 
 
@@ -60,7 +59,7 @@
                         <div class="card-header py-3">
                             <h3 class="m-1 font-weight-bold text-primary">Lista De Usuarios</h3>
                             <div class="d-flex justify-content-end">
-                                    <a class="btn btn-primary" href="users/create"><i class="fa-solid fa-layer-group"></i></a>
+                                    <a class="btn btn-primary" href="users/create"><i class="fa-solid fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -68,10 +67,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Clave</th>
                                             <th>Nombre</th>
                                             <th>Email</th>
-                                            <th>Password</th>
                                             <th>Firma</th>
                                             <th>Dirección</th>
                                             <th>Tipo de usuario</th>
@@ -79,10 +77,9 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                             <th>Id</th>
+                                             <th>Clave</th>
                                              <th>Nombre</th>
                                              <th>Email</th>
-                                            <th>Password</th>
                                             <th>Firma</th>
                                             <th>Dirección</th>
                                             <th>Tipo de usuario</th>
@@ -94,15 +91,20 @@
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->password}}</td>
                                             <td>{{$user->signature}}</td>
-                                            <td>{{$user->directions->name}}</td>
+                                            <td>{{$user->directions->teaching}}</td>
                                             <td>{{$user->typeofusers->name}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="users/{{$user->id}}" ><i class="fa-regular fa-eye"></i></a>
                                                         <a class="btn btn-warning m-3" href="users/{{$user->id}}/edit"  ><i class="fa-solid fa-pen-to-square"></i></a>
-                                                        <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a>
+                                                        <form action="users/{{$user->id}}" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        @method("delete")
+                                                            
+                                                        <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                        <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->
                                             </div>            
                                             </td>
                                         </tr>

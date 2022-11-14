@@ -51,7 +51,7 @@ class ClassroomsController extends Controller
      */
     public function show($id)
     {
-        $classroom = classrooms::find($id);
+        $classroom = classrooms::findOrFail($id);
         return view('Classrooms.show')->with('classrooms',$classroom);
     }
 
@@ -64,7 +64,7 @@ class ClassroomsController extends Controller
     public function edit($id)
     {
         $directions = directions::all('id','name');
-        $classroom = classrooms::find($id);
+        $classroom = classrooms::findOrFail($id);
         return view('Classrooms.edit', compact('directions'))->with('classrooms', $classroom);
     }
 
@@ -77,7 +77,7 @@ class ClassroomsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $classroom= classrooms::find($id);
+        $classroom = classrooms::findOrFail($id);
         $input=$request->all();
         $classroom->update($input);
         return redirect('classrooms')->with('info','Se ha actualizado el registro correctamente');
@@ -91,6 +91,8 @@ class ClassroomsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom = classrooms::findOrFail($id);
+        $classroom->delete();
+        return redirect('classrooms')->with('danger','correctamente la dirección');
     }
 }

@@ -13,8 +13,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Direcciones Editar</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    
 </div>
 
 
@@ -39,11 +38,12 @@
                 {!! csrf_field() !!}
                 @method("PATCH")
                 <input class="form-control" type="text" value="{{$directions->id}}" aria-label="Disabled input example" disabled>
-                <label for=""> Nombre:</label>
-                <input class="form-control" type="text" id="name" name="name" value="{{$directions->name}}">
                 <label for=""> Docencia:</label>
                 <input class="form-control" type="text" id="teaching" name="teaching" value="{{$directions->teaching}}">
+                <label for=""> Nombre:</label>
+                <input class="form-control" type="text" id="career" name="career" value="{{$directions->career}}">
                 <div class="row">
+                    <a class="btn btn-danger m-3"  href="/directions" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="update">Guadar</button>
 
                 </div>

@@ -22,7 +22,7 @@
 @if (session('danger'))
     @component( 'components.alert' )
         @slot( 'class', 'danger' )
-        @slot( 'name', 'Advertencia' )
+        @slot( 'name', 'Se ha eliminado' )
         @slot( 'message', session('danger') )
     @endcomponent
 @endif

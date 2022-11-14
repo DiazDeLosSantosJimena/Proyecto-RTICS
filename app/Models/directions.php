@@ -10,8 +10,8 @@ class directions extends Model
 {
     use HasFactory;
     protected $fillable = [
-    'name',
-    'teaching'
+    'teaching',
+    'career'
     ];
 
 
@@ -30,6 +30,7 @@ class directions extends Model
         return $this->hasMany(users::class, 'typeofusers_id', 'id');
 
     }
+
 
     public function classrooms() {
         return $this->hasMany(classrooms::class, 'direction_id, id');

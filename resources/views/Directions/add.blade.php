@@ -14,8 +14,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Direcciones Altas</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
 </div>
 
 
@@ -38,10 +37,11 @@
                 
             <form action="{{ url('directions') }}" method="post">
                 {!! csrf_field() !!}
-                <label for=""> Nombre:</label>
-                <input class="form-control" type="text" id="name" name="name">
                 <label for=""> Docencia:</label>
                 <input class="form-control" type="text" id="teaching" name="teaching">
+                <label for=""> Carrera:</label>
+                <input class="form-control" type="text" id="career" name="career">
+                    <a class="btn btn-danger m-3"  href="/directions" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="save">Guadar</button>
                 </div>
             </form>

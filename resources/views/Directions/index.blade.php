@@ -10,8 +10,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Direcciones</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
 </div>
 
 
@@ -56,7 +55,7 @@
                         <div class="card-header py-3">
                             <h3 class="m-1 font-weight-bold text-primary">Lista De Direcciones</h3>
                             <div class="d-flex justify-content-end">
-                                    <a class="btn btn-primary" href="directions/create"><i class="fa-solid fa-layer-group"></i></a>
+                                    <a class="btn btn-primary" href="directions/create"><i class="fa-solid fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -64,17 +63,17 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nombre</th>
-                                            <th>Docencia</th>
+                                            <th>Clave</th>
+                                            <th>Docencias</th>
+                                            <th>Carreras</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                             <th>Id</th>
-                                            <th>Nombre</th>
-                                            <th>Docencia</th>
+                                             <th>Clave</th>
+                                            <th>Docencias</th>
+                                            <th>Carreras</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </tfoot>
@@ -82,13 +81,20 @@
                                     @foreach($directions as $direction)
                                         <tr>
                                             <td>{{$direction->id}}</td>
-                                            <td>{{$direction->name}}</td>
                                             <td>{{$direction->teaching}}</td>
+                                            <td>{{$direction->career}}</td>
+                                            
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="directions/{{$direction->id}}" ><i class="fa-regular fa-eye"></i></a>
                                                         <a class="btn btn-warning m-3" href="directions/{{$direction->id}}/edit"  ><i class="fa-solid fa-pen-to-square"></i></a>
-                                                        <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a>
+                                                        <form action="directions/{{$direction->id}}" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        @method("delete")
+                                                            
+                                                        <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                        <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->
                                             </div>            
                                             </td>
                                         </tr>

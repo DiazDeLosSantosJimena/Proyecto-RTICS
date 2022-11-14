@@ -10,8 +10,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Aulas</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    
 </div>
 
 
@@ -56,7 +55,7 @@
                         <div class="card-header py-3">
                             <h3 class="m-1 font-weight-bold text-primary">Lista De Aulas</h3>
                             <div class="d-flex justify-content-end">
-                                    <a class="btn btn-primary" href="classrooms/create"><i class="fa-solid fa-layer-group"></i></a>
+                                    <a class="btn btn-primary" href="classrooms/create"><i class="fa-solid fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -84,12 +83,18 @@
                                         <tr>
                                             <td>{{$classroom->id}}</td>
                                             <td>{{$classroom->name}}</td>
-                                            <td>{{$classroom->directions->name}}</td>
+                                            <td>{{$classroom->directions->teaching}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="classrooms/{{$classroom->id}}" ><i class="fa-regular fa-eye"></i></a>
                                                         <a class="btn btn-warning m-3" href="classrooms/{{$classroom->id}}/edit"  ><i class="fa-solid fa-pen-to-square"></i></a>
-                                                        <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a>
+                                                        <form action="classrooms/{{$classroom->id}}" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        @method("delete")
+                                                            
+                                                        <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                        <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->
                                             </div>            
                                             </td>
                                         </tr>

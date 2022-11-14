@@ -13,8 +13,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Tipos de Usuario Editar</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
 
@@ -49,6 +47,7 @@
                 </select>
                 <!-- <input class="form-control" type="text" id="name" name="name" value="{{$typeofusers->name}}"> -->
                 <div class="row">
+                <a class="btn btn-danger m-3"  href="/typeofusers" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="update">Guadar</button>
 
                 </div>

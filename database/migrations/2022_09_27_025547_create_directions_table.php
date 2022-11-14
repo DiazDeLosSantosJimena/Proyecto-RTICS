@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('directions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('teaching');
+            $table->string('career');
             $table->softDeletes();
             $table->timestamps();
         });

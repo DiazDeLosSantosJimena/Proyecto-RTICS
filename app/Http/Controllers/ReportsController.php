@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\classrooms;
 use App\Models\reports;
 use App\Models\directions;
 use App\Models\users;
@@ -28,7 +30,8 @@ class ReportsController extends Controller
     public function create()
     {
         $users = users::all('id','name');
-        $directions = directions::all('id','name');
+        $directions = directions::all('id','teaching','career');
+        // $classrooms = classrooms::all('id','name');
         return view('Reports.add', compact('users'), compact('directions'));
     }
 
@@ -53,7 +56,7 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        $report = reports::find($id);
+        $report = reports::findOrFail($id);
         return view('Reports.show')->with('reports',$report);
     }
 
@@ -66,8 +69,8 @@ class ReportsController extends Controller
     public function edit($id)
     {
         $users = users::all('id','name');
-        $directions = directions::all('id','name');
-        $report = reports::find($id);
+        $directions = directions::all('id','teaching');
+        $report = reports::findOrFail($id);
         return view('Reports.edit', compact('users'), compact('directions'))->with('reports', $report);
     }
 
@@ -80,7 +83,7 @@ class ReportsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $report= reports::find($id);
+        $report= reports::findOrFail($id);
         $input=$request->all();
         $report->update($input);
         return redirect('reports')->with('message','Se ha actualizado el registro correctamente');
@@ -94,7 +97,9 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $report = reports::findOrFail($id);
+        $report->delete();
+        return redirect('reports')->with('danger','correctamente el reporte');
     }
 }
 

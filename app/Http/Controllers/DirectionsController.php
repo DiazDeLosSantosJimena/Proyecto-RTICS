@@ -49,7 +49,7 @@ class DirectionsController extends Controller
      */
     public function show($id)
     {
-        $direction = directions::find($id);
+        $direction = directions::findOrFail($id);
         return view('Directions.show')->with('directions',$direction);
         
     }
@@ -62,7 +62,7 @@ class DirectionsController extends Controller
      */
     public function edit($id)
     {
-        $direction = directions::find($id);
+        $direction = directions::findOrFail($id);
         return view('Directions.edit')->with('directions', $direction);
     }
 
@@ -75,7 +75,7 @@ class DirectionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $direction= directions::find($id);
+        $direction= directions::findOrFail($id);
         $input=$request->all();
         $direction->update($input);
         return redirect('directions')->with('message','Se ha actualizado el registro correctamente');
@@ -89,6 +89,8 @@ class DirectionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $direction = directions::findOrFail($id);
+        $direction->delete();
+        return redirect('directions')->with('danger','correctamente la dirección');
     }
 }
