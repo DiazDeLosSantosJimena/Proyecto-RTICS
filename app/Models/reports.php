@@ -23,14 +23,14 @@ class reports extends Model
     }*/
 
     public function directions() {
-        return $this->belongsTo(directions::class,'direction_id');
+        return $this->belongsTo(directions::class,'direction_id')->withTrashed();
     
         }
 
     public function users() {
-        return $this->belongsTo(users::class,'user_id');
+        return $this->belongsTo(users::class,'user_id')->withTrashed();
 
     }
-
+    use SoftDeletes; 
 }
 

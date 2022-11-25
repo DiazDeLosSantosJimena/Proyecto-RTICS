@@ -26,15 +26,7 @@
         @slot( 'message', session('danger') )
     @endcomponent
 @endif
-@if ( $errors->any() )
-    @foreach ( $errors->all() as $error )
-        @component( 'components.alert' )
-            @slot( 'class', 'danger' )
-            @slot( 'name', 'Atención' )
-            @slot( 'message', $error )
-        @endcomponent
-    @endforeach
-@endif
+
 @if ($message = Session::get('error'))
 <div class="alert alert-danger alert-block">
     <button type="button" class="close"data-dismiss="alert">x</button>

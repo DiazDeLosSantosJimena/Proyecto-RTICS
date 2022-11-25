@@ -14,8 +14,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Aulas Altas</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
 
@@ -40,14 +38,10 @@
                 {!! csrf_field() !!}
                 <label for=""> Nombre:</label>
                 <input class="form-control" type="text" id="name" name="name">
-                <label for=""> Docencia:</label>
-                <select class="form-control form-select" aria-label="Default select example" name="direction_id">
-                    <option selected>Elige la docencia</option>
-                        @foreach($directions as $direction)   
-                    <option value={{$direction->id}}>{{$direction->name}}</option>
-                       @endforeach
-                </select>
-                <!-- <input class="form-control" type="text" id="direction_id" name="direction_id"> -->
+                @error('name')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
+                <a class="btn btn-danger m-3"  href="/classrooms" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="save">Guadar</button>
                 </div>
             </form>

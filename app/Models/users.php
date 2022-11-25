@@ -22,14 +22,14 @@ class users extends Model
     /*public function typeofusers() {
         return $this->hasOne(typeofusers::class);
 
-    }*/
+    }*/     
     public function directions() {
-        return $this->belongsTo(directions::class,'direction_id');
+        return $this->belongsTo(directions::class,'direction_id')->withTrashed();
 
     }
 
     public function typeofusers() {
-        return $this->belongsTo(typeofusers::class,'typeofuser_id');
+        return $this->belongsTo(typeofusers::class,'typeofuser_id')->withTrashed();
 
     }
 
@@ -38,6 +38,6 @@ class users extends Model
         return $this->hasMany(reports::class);
 
     }
-
+    use SoftDeletes; 
 
 }

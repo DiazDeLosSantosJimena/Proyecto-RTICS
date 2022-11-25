@@ -14,8 +14,13 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = users ::all();
+    {   
+        $users = users::all();
+        /* $users = users::select(('users.id AS idusers'),'users.name','email',('directions.teaching    AS named'),'directions.career',('typeofusers.name AS typeuser'))
+        ->join('directions','users.direction_id','directions.id')        
+        ->join('typeofusers','users.typeofuser_id','typeofusers.id')->get(); */
+
+        //return $users;
         return view('Users.index', compact('users'));
         
     }
@@ -28,7 +33,7 @@ class UsersController extends Controller
     public function create()
     {
         $typeofusers = typeofusers::all('id','name');
-        $directions = directions::all('id','name');
+        $directions = directions::all('id','teaching','career','classroom_id');
         return view('Users.add', compact('typeofusers'), compact('directions'));
     }
 
@@ -40,7 +45,29 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $rules =[
+            'name'=> 'required',
+            'email' =>'required',
+            'password' =>'required',
+            'signature' => 'required',
+            'direction_id' => 'required',
+            'typeofuser_id' => 'required'
+
+        ];
+
+        $message = [
+            'name.required' => 'El nombre es requerido',
+            'email.required' => 'El correo es requerido',
+            'password.required' => 'La contraseña es requerida',
+            'signature.required' => 'La firma es requerida',
+            'direction_id.required' => 'La dirección es requerida',
+            'typeofuser_id.required' => 'El Tipo de usuario es requerido',
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input=$request->all();
+        $input['password']=bcrypt($request->password);
         users::create($input);
         return redirect('users')->with('message','Se ha creado correctamente el usuario');
     }
@@ -66,7 +93,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $typeofusers = typeofusers::all('id','name');
-        $directions = directions::all('id','name');
+        $directions = directions::all('id','teaching','career','classroom_id');
         $user = users::findOrFail($id);
         return view('Users.edit', compact('typeofusers'), compact('directions'))->with('users', $user);
     }
@@ -81,9 +108,30 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user= users::findOrFail($id);
+        $rules =[
+            'name'=> 'required',
+            'email' =>'required',
+            'password' =>'required',
+            'signature' => 'required',
+            'direction_id' => 'required',
+            'typeofuser_id' => 'required'
+
+        ];
+
+        $message = [
+            'name.required' => 'El nombre es requerido',
+            'email.required' => 'El correo es requerido',
+            'password.required' => 'La contraseña es requerida',
+            'signature.required' => 'La firma es requerida',
+            'direction_id.required' => 'La dirección es requerida',
+            'typeofuser_id.required' => 'El Tipo de usuario es requerido',
+        ];
+
+        $this->validate($request, $rules, $message);
         $input=$request->all();
+        $input['password']=bcrypt($request->password);
         $user->update($input);
-        return redirect('users')->with('message','Se ha actualizado el registro correctamente');
+        return redirect('users')->with('info','Se ha actualizado el registro correctamente');
     }
 
     /**

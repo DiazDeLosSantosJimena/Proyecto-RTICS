@@ -11,7 +11,8 @@ class directions extends Model
     use HasFactory;
     protected $fillable = [
     'teaching',
-    'career'
+    'career',
+    'classroom_id'
     ];
 
 
@@ -30,11 +31,14 @@ class directions extends Model
         return $this->hasMany(users::class, 'typeofusers_id', 'id');
 
     }
+     public function classrooms() {
+         return $this->belongsTo(classrooms::class,'classroom_id')->withTrashed();
 
+     }
 
-    public function classrooms() {
-        return $this->hasMany(classrooms::class, 'direction_id, id');
+    //  public function classrooms() {
+    //     return $this->hasMany(classrooms::class, 'classroom_id, id');
 
-    }
-
+    //  }
+    use SoftDeletes; 
 }

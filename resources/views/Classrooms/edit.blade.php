@@ -40,16 +40,12 @@
                 @method("PATCH")
                 <input class="form-control" type="text" value="{{$classrooms->id}}" aria-label="Disabled input example" disabled>
                 <label for=""> Nombre:</label>
-                <input class="form-control" type="text" id="name" name="name" value="{{$classrooms->name}}">
-                <label for=""> Docencia:</label>
-                <select class="form-control form-select" aria-label="Default select example" name="direction_id" value="{{$classrooms->direction_id}}">
-                     <option selected>{{$classrooms->directions->name}}</option>
-                        @foreach($directions as $direction)   
-                    <option value={{$direction->id}}>{{$direction->name}}</option>
-                       @endforeach
-                </select>
-                <!-- <input class="form-control" type="text" id="direction_id" name="direction_id" value="{{$classrooms->direction_id}}"> -->
+                <input class="form-control" type="text" id="name" name="name" value="{{ old('name') ? old('name') : $classrooms->name}}">
+                @error('name')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <div class="row">
+                <a class="btn btn-danger m-3"  href="/classrooms" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="update">Guadar</button>
 
                 </div>

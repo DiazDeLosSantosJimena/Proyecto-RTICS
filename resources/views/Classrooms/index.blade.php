@@ -64,17 +64,15 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Clave</th>
                                             <th>Nombre</th>
-                                            <th>Docencia</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                             <th>Id</th>
+                                             <th>Clave</th>
                                             <th>Nombre</th>
-                                            <th>Docencia</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </tfoot>
@@ -83,7 +81,6 @@
                                         <tr>
                                             <td>{{$classroom->id}}</td>
                                             <td>{{$classroom->name}}</td>
-                                            <td>{{$classroom->directions->teaching}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="classrooms/{{$classroom->id}}" ><i class="fa-regular fa-eye"></i></a>

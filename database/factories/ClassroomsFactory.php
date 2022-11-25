@@ -18,7 +18,6 @@ class ClassroomsFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),    
-            'direction_id' => directions::all()->random()->id,
     
             ];
     }

@@ -13,13 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classrooms', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('signature');
             $table->integer('direction_id')->unsigned();
             $table->foreign('direction_id')->references('id')->on('directions')->onDelete('cascade');
+            $table->integer('typeofuser_id')->unsigned();
+            $table->foreign('typeofuser_id')->references('id')->on('typeofusers')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
+            
         });
     }
 
@@ -30,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classrooms');
+        Schema::dropIfExists('users');
     }
 };

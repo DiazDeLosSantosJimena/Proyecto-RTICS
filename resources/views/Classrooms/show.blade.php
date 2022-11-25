@@ -36,7 +36,6 @@
             <div class="card-body">
              <h5 class="card-title"> Id: {{ $classrooms->id }}</h5>
              <h5 class="card-title"> Nombre: {{ $classrooms->name }}</h5>
-             <h5 class="card-title"> Dirección: {{ $classrooms->directions->name }}</h5>
              <a class="btn btn-outline-success" m-3" href="/classrooms" ><i class="fa-solid fa-arrow-left"></i></a>
             </div>
 

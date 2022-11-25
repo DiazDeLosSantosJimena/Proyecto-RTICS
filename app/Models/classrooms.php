@@ -12,14 +12,18 @@ class classrooms extends Model
 
     protected $fillable = [
     'name',    
-    'direction_id'
     ];
 
+     public function directions() {
+          return $this->hasOneThrough(directions::class,reports::class, 'classroom_id, id','direction_id, id');
+    
+        }
     
 
-    public function directions() {
-        return $this->belongsTo(directions::class,'direction_id');
+    //  public function directions() {
+    //      return $this->belongsTo(directions::class,'classroom_id');
 
-    }
+    //  }
+    use SoftDeletes; 
 }
 

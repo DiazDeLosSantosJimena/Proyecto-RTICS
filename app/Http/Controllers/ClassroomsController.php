@@ -26,8 +26,7 @@ class ClassroomsController extends Controller
      */
     public function create()
     {
-        $directions = directions::all('id','name');
-        return view('Classrooms.add', compact('directions'));
+        return view('Classrooms.add');
     }
 
     /**
@@ -38,6 +37,17 @@ class ClassroomsController extends Controller
      */
     public function store(Request $request)
     {
+        $rules =[
+            'name'=> 'required'
+
+        ];
+
+        $message = [
+            'name.required' => 'El nombre es requerido',
+
+        ];
+
+        $this->validate($request, $rules, $message);
         $input=$request->all();
         classrooms::create($input);
         return redirect('classrooms')->with('message','Se ha creado correctamente la aula');
@@ -63,9 +73,8 @@ class ClassroomsController extends Controller
      */
     public function edit($id)
     {
-        $directions = directions::all('id','name');
         $classroom = classrooms::findOrFail($id);
-        return view('Classrooms.edit', compact('directions'))->with('classrooms', $classroom);
+        return view('Classrooms.edit')->with('classrooms', $classroom);
     }
 
     /**
@@ -78,6 +87,17 @@ class ClassroomsController extends Controller
     public function update(Request $request, $id)
     {
         $classroom = classrooms::findOrFail($id);
+        $rules =[
+            'name'=> 'required'
+
+        ];
+
+        $message = [
+            'name.required' => 'El nombre es requerido',
+
+        ];
+
+        $this->validate($request, $rules, $message);
         $input=$request->all();
         $classroom->update($input);
         return redirect('classrooms')->with('info','Se ha actualizado el registro correctamente');
@@ -93,6 +113,6 @@ class ClassroomsController extends Controller
     {
         $classroom = classrooms::findOrFail($id);
         $classroom->delete();
-        return redirect('classrooms')->with('danger','correctamente la dirección');
+        return redirect('classrooms')->with('danger','correctamente el aula');
     }
 }

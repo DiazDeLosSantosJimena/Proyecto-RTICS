@@ -91,7 +91,7 @@
                                             <td>{{$report->id}}</td>
                                             <td>{{$report->description}}</td>
                                             <td>{{$report->status}}</td>
-                                            <td>{{$report->directions->teaching}}</td>
+                                            <td>{{$report->directions->teaching}}-{{$report->directions->classrooms->name}}</td>
                                             <td>{{$report->users->name}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">

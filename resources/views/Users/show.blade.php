@@ -32,17 +32,16 @@
                 <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
             </div>
             <div class="card-body">
-             <h5 class="card-title"> Id: {{ $users->id }}</h5>
+             <!-- <h5 class="card-title"> Id: {{ $users->id }}</h5> -->
              <h5 class="card-title"> Nombre: {{ $users->name }}</h5>
              <h5 class="card-title"> Email: {{ $users->email }}</h5>
-             <h5 class="card-title"> Password: {{ $users->password }}</h5>
              <h5 class="card-title"> Firma: {{ $users->signature }}</h5>
-             <h5 class="card-title"> Dirección: {{ $users->directions->name }}</h5>
+             <h5 class="card-title"> Dirección: {{ $users->directions->teaching}}--{{ $users->directions->career}}</h5>
              <h5 class="card-title"> Tipo de usuario: {{ $users->typeofusers->name }}</h5>
              <a class="btn btn-outline-success" m-3" href="/users" ><i class="fa-solid fa-arrow-left"></i></a>
             </div>
 
-       
+    
 
     </div>
 

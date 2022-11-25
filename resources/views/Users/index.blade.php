@@ -73,6 +73,7 @@
                                             <th>Firma</th>
                                             <th>Dirección</th>
                                             <th>Tipo de usuario</th>
+                                            <th>Operaciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -83,6 +84,7 @@
                                             <th>Firma</th>
                                             <th>Dirección</th>
                                             <th>Tipo de usuario</th>
+                                            <th>Operaciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -92,7 +94,7 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->signature}}</td>
-                                            <td>{{$user->directions->teaching}}</td>
+                                            <td>{{$user->directions->teaching}}--{{ $user->directions->career}}</td>
                                             <td>{{$user->typeofusers->name}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
@@ -102,6 +104,7 @@
                                                         {!! csrf_field() !!}
                                                         @method("delete")
                                                             
+                                                    
                                                         <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
                                                         </form>
                                                         <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->

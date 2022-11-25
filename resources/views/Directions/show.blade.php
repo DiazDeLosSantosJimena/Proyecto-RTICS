@@ -35,6 +35,7 @@
             <div class="card-body">
              <h5 class="card-title"> Docencia: {{ $directions->teaching }}</h5>
              <h5 class="card-title"> Carrera: {{ $directions->career}}</h5>
+             <h5 class="card-title"> Aula: {{ $directions->classrooms->name}}</h5>
              <a class="btn btn-outline-success" m-3" href="/directions" ><i class="fa-solid fa-arrow-left"></i></a>
             </div>
 

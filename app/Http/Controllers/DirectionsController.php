@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\directions;
+use App\Models\classrooms;
 use Illuminate\Http\Request;
 
 class DirectionsController extends Controller
@@ -13,7 +14,7 @@ class DirectionsController extends Controller
      */
     public function index()
     {
-        $directions = directions::all();
+        $directions = directions::all();;
         return view('Directions.index', compact('directions'));
         
     }
@@ -25,7 +26,8 @@ class DirectionsController extends Controller
      */
     public function create()
     {
-        return view('Directions.add');
+        $classrooms = classrooms::all('id','name');
+        return view('Directions.add', compact('classrooms'));
     }
 
     /**
@@ -36,11 +38,27 @@ class DirectionsController extends Controller
      */
     public function store(Request $request)
     {
+        $rules =[
+            'teaching'=> 'required',
+            'career'=> 'required',
+            'classroom_id'=> 'required'
+
+        ];
+
+        $message = [
+            'teaching.required' => 'La docencia es requerida',
+            'career.required' => 'La carrera es requerida',
+            'classroom_id.required' => 'El aula es requerida',
+
+        ];
+
+        $this->validate($request, $rules, $message);
         $input=$request->all();
         directions::create($input);
-        return redirect('directions')->with('message','Se ha creado correctamente las direcciones');
+        return redirect('directions')->with('message','Se ha creado correctamente la dirección');
     }
 
+    
     /**
      * Display the specified resource.
      *
@@ -62,8 +80,9 @@ class DirectionsController extends Controller
      */
     public function edit($id)
     {
+        $classrooms = classrooms::all('id','name');
         $direction = directions::findOrFail($id);
-        return view('Directions.edit')->with('directions', $direction);
+        return view('Directions.edit', compact('classrooms'))->with('directions', $direction);
     }
 
     /**
@@ -76,9 +95,24 @@ class DirectionsController extends Controller
     public function update(Request $request, $id)
     {
         $direction= directions::findOrFail($id);
+        $rules =[
+            'teaching'=> 'required',
+            'career'=> 'required',
+            'classroom_id'=> 'required'
+
+        ];
+
+        $message = [
+            'teaching.required' => 'La docencia es requerida',
+            'career.required' => 'La carrera es requerida',
+            'classroom_id.required' => 'El aula es requerida',
+
+        ];
+
+        $this->validate($request, $rules, $message);
         $input=$request->all();
         $direction->update($input);
-        return redirect('directions')->with('message','Se ha actualizado el registro correctamente');
+        return redirect('directions')->with('info','Se ha actualizado el registro correctamente');
     }
 
     /**
@@ -89,8 +123,9 @@ class DirectionsController extends Controller
      */
     public function destroy($id)
     {
-        $direction = directions::findOrFail($id);
-        $direction->delete();
-        return redirect('directions')->with('danger','correctamente la dirección');
+         $direction = directions::findOrFail($id);
+         $direction->delete();
+         return redirect('directions')->with('danger','correctamente la dirección');
+
     }
 }

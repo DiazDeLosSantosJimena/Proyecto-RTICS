@@ -6,6 +6,7 @@ use App\Http\Controllers\DirectionsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\TypeofusersController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::resource('reports',ReportsController::class);
 Route::resource('typeofusers',TypeofusersController::class);
 Route::resource('users',UsersController::class);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//  Route::get('/',  function () {
+//      return view('welcome');
+//  });
+Route::get('/',[App\Http\Controllers\Dashboard::class, 'index']);

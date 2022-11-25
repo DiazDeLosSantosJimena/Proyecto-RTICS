@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('teaching');
             $table->string('career');
+            $table->integer('classroom_id')->unsigned();
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

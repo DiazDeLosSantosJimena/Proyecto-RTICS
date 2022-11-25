@@ -36,29 +36,48 @@
                 
             <form action="{{ url('users') }}" method="post">
                 {!! csrf_field() !!}
+                @include('components.flash_alerts') 
                 <label for=""> Nombre completo:</label>
-                <input class="form-control" type="text" id="name" name="name">
+                <input class="form-control" type="text" id="name" name="name" value="{{old('name')}}">
+                @error('name')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <label for=""> Email:</label>
-                <input class="form-control" type="email" id="email" name="email">
+                <input class="form-control" type="email" id="email" name="email" value="{{old('email')}}">
+                @error('email')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <label for=""> Password:</label>
-                <input class="form-control" type="password" id="password" name="password">
+                <input class="form-control" type="password" id="password" name="password" value="{{old('password')}}">
+                @error('password')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <label for="formFile" class="form-label">Selecciona tu archivo de FIRMA</label>
-                <input class="form-control" type="file" id="signature" name="signature">
+                <input class="form-control" type="file" id="signature" name="signature" value="{{old('signature')}}">
+                @error('signature')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <label for=""> Direccion:</label>
-                <select class="form-control form-select" aria-label="Default select example" name="direction_id">
-                    <option selected>Elige la dirección</option>
+                <select class="form-control form-select" aria-label="Default select example" name="direction_id" >
+                    <option value="">Elige la dirección</option>
                         @foreach($directions as $direction)   
-                    <option value={{$direction->id}}>{{$direction->name}}</option>
+                    <option value={{$direction->id}}>{{$direction->teaching}}--{{$direction->career}}</option>
                        @endforeach
                 </select>
+                @error('direction_id')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <!-- <input class="form-control" type="text" id="direction_id" name="direction_id"> -->
                 <label for=""> Tipo de usuario:</label>
-                <select class="form-control form-select" aria-label="Default select example" name="typeofuser_id">
-                    <option selected>Elige al tipo de usuario</option>
+                <select class="form-control form-select" aria-label="Default select example" name="typeofuser_id" >
+                    <option value="">Elige al tipo de usuario</option>
                         @foreach($typeofusers as $typeofuser)   
                     <option value={{$typeofuser->id}}>{{$typeofuser->name}}</option>
                        @endforeach
                 </select>
+                @error('typeofuser_id')
+                  <small class="form-text text-danger">{{$message}}</small>
+                @enderror 
                 <!-- <input class="form-control" type="text" id="typeofuser_id" name="typeofuser_id"> -->
                     <a class="btn btn-danger m-3"  href="/users" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="save">Guadar</button>

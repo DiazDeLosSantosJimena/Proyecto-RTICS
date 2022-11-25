@@ -21,5 +21,5 @@ class typeofusers extends Model
         return $this->hasMany(users::class, 'typeofuser_id', 'id');
 
     }
-
+    use SoftDeletes; 
 }

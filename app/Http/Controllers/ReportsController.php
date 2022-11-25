@@ -8,6 +8,7 @@ use App\Models\directions;
 use App\Models\users;
 use Illuminate\Http\Request;
 
+
 class ReportsController extends Controller
 {
     /**
@@ -29,8 +30,8 @@ class ReportsController extends Controller
      */
     public function create()
     {
-        $users = users::all('id','name');
-        $directions = directions::all('id','teaching','career');
+        $users = users::all('id','name','typeofuser_id');
+        $directions = directions::all('id','teaching','career','classroom_id');
         // $classrooms = classrooms::all('id','name');
         return view('Reports.add', compact('users'), compact('directions'));
     }
@@ -43,6 +44,22 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
+        $rules =[
+            'description'=> 'required',
+            'status' =>'required',
+            'direction_id' =>'required',
+            'user_id' => 'required'
+        ];
+
+        $message = [
+            'description.required' => 'La descripción es requerida',
+            'status.required' => 'El status es requerido',
+            'direction_id.required' => 'La dirección es requerida',
+            'user_id.required' => 'El usuario es requerido',
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input=$request->all();
         reports::create($input);
         return redirect('reports')->with('message','Se ha creado correctamente el reporte');
@@ -68,8 +85,8 @@ class ReportsController extends Controller
      */
     public function edit($id)
     {
-        $users = users::all('id','name');
-        $directions = directions::all('id','teaching');
+        $users = users::all('id','name','typeofuser_id');
+        $directions = directions::all('id','teaching','classroom_id');
         $report = reports::findOrFail($id);
         return view('Reports.edit', compact('users'), compact('directions'))->with('reports', $report);
     }
@@ -84,6 +101,22 @@ class ReportsController extends Controller
     public function update(Request $request, $id)
     {
         $report= reports::findOrFail($id);
+        $rules =[
+            'description'=> 'required',
+             'status' =>'required',
+            'direction_id' =>'required',
+            'user_id' => 'required'
+        ];
+
+        $message = [
+            'description.required' => 'La descripción es requerida',
+             'status.required' => 'El status es requerido',
+            'direction_id.required' => 'La dirección es requerida',
+            'user_id.required' => 'El usuario es requerido',
+        ];
+
+        $this->validate($request, $rules, $message);
+
         $input=$request->all();
         $report->update($input);
         return redirect('reports')->with('message','Se ha actualizado el registro correctamente');

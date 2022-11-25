@@ -64,16 +64,18 @@
                                     <thead>
                                         <tr>
                                             <th>Clave</th>
-                                            <th>Docencias</th>
-                                            <th>Carreras</th>
+                                            <th>Docencia</th>
+                                            <th>Carrera</th>
+                                            <th>Aula</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                              <th>Clave</th>
-                                            <th>Docencias</th>
-                                            <th>Carreras</th>
+                                            <th>Docencia</th>
+                                            <th>Carrera</th>
+                                            <th>Aula</th>
                                             <th>Operaciones</th>
                                         </tr>
                                     </tfoot>
@@ -83,7 +85,7 @@
                                             <td>{{$direction->id}}</td>
                                             <td>{{$direction->teaching}}</td>
                                             <td>{{$direction->career}}</td>
-                                            
+                                            <td>{{$direction->classrooms->name}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="directions/{{$direction->id}}" ><i class="fa-regular fa-eye"></i></a>
