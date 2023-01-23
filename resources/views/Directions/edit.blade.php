@@ -50,7 +50,7 @@
                 @enderror 
                 <label for=""> Aula:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="classroom_id" >
-                    <option value="">Elige el aula asignada</option>
+                    <option value="{{ old('classroom_id') ? old('classroom_id') : $directions->classroom_id}}">{{$directions->classrooms->name}}</option>
                         @foreach($classrooms as $classroom)   
                     <option value={{$classroom->id}}>{{$classroom->name}}</option>
                        @endforeach

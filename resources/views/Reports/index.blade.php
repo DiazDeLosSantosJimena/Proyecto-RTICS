@@ -92,7 +92,7 @@
                                             <td>{{$report->description}}</td>
                                             <td>{{$report->status}}</td>
                                             <td>{{$report->directions->teaching}}-{{$report->directions->classrooms->name}}</td>
-                                            <td>{{$report->users->name}}</td>
+                                            <td>{{$report->users->name}}--{{$report->users->typeofusers->name}}</td>
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="reports/{{$report->id}}" ><i class="fa-regular fa-eye"></i></a>

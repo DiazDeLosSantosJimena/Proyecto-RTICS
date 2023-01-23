@@ -48,29 +48,30 @@
 
                 <label for=""> Status:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="status" value="{{$reports->status}}">
-                     <option value="" >{{$reports->status}}</option> 
-                    <option value="Activo" >Activo</option>
+                     <option value="{{ old('status') ? old('status'): $reports->status}}" >{{$reports->status}}</option> 
+                    <option value="En proceso" >En Proceso</option>
                     <option value="Completo">Completo</option>
                 </select>
                 @error('status')
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
+
                 <!-- <input class="form-control" type="text" id="status" name="status" value="{{$reports->status}}"> -->
                 <label for=""> Dirección:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="direction_id" value="{{$reports->directions->name}}">
-                    <option value="">Elige la dirección</option>
+                    <option value="{{ old('direction_id') ? old('direction_id'): $reports->direction_id}}">{{$reports->directions->teaching}}--{{$reports->directions->classrooms->name}}</option>
                         @foreach($directions as $direction)   
                     <option value={{$direction->id}}>{{$direction->teaching}}--{{$direction->classrooms->name}}</option>
                        @endforeach
                     </select>
-                    @error('direction_id')
+                @error('direction_id')
                   <small class="form-text text-danger">{{$message}}</small>
                   @enderror 
 
                 <!-- <input class="form-control" type="text" id="direction_id" name="direction_id" value="{{$reports->directions->name}}"> -->
                 <label for=""> Usuario:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="user_id" value="{{$reports->users->name}}">
-                <option value="">Elige al usuario</option>
+                <option value="{{ old('user_id') ? old('user_id'): $reports->user_id}}">{{$reports->users->name}}--{{$reports->users->typeofusers->name}}</option>
                         @foreach($users as $user)   
                     <option value={{$user->id}}>{{$user->name}}</option>
                        @endforeach

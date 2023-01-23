@@ -44,16 +44,7 @@
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
 
-                <label for=""> Status:</label>
-                <!-- <input class="form-control" type="text" value="Activo" id="status" name="status" aria-label="Disabled input example" disabled> -->
-                <select class="form-control form-select" aria-label="Default select example" name="status">
-                <option value="">Elige una opcion</option>
-                <option value="Activo" >Activo</option>
-                <option value="Completo">Completo</option>
-                </select>
-                @error('status')
-                  <small class="form-text text-danger">{{$message}}</small>
-                @enderror 
+               
                 <!-- <input class="form-control" type="text" id="status" name="status"> -->
 
                 <label for=""> Direccion:</label>

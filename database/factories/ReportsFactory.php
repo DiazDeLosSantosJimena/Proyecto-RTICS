@@ -20,7 +20,7 @@ class reportsFactory extends Factory
     {
         return [
                 'description' => $this->faker->text(),
-                'status' => $this->faker->randomElement(['ACTIVO']),
+                'status' => $this->faker->randomElement(['Activo']),
                 'direction_id' => directions::all()->random()->id,
                 'user_id' => users::all()->random()->id,
 

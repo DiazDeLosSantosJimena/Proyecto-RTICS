@@ -49,7 +49,7 @@ class UsersController extends Controller
             'name'=> 'required',
             'email' =>'required',
             'password' =>'required',
-            'signature' => 'required',
+            'signature' => 'required|mimes:png,jpg,jpeg',
             'direction_id' => 'required',
             'typeofuser_id' => 'required'
 
@@ -59,7 +59,8 @@ class UsersController extends Controller
             'name.required' => 'El nombre es requerido',
             'email.required' => 'El correo es requerido',
             'password.required' => 'La contraseña es requerida',
-            'signature.required' => 'La firma es requerida',
+            'signature.required' => 'La imagen de la firma es requerida',
+            'signature.mimes' => 'El archivo no es valido',
             'direction_id.required' => 'La dirección es requerida',
             'typeofuser_id.required' => 'El Tipo de usuario es requerido',
         ];
@@ -68,6 +69,18 @@ class UsersController extends Controller
 
         $input=$request->all();
         $input['password']=bcrypt($request->password);
+
+        if( isset($input["signature"])){
+            $input["signature"] = $fileName = time().'.'.$input["signature"]->extension();
+    
+            $request->signature->move(public_path("file"),$fileName);
+          }
+        
+        // if($request->hasFile('signature')){
+        //     $input['signature'] = time().'_'. $request->file('signature')->getClientOriginalName();
+        //     $request->signature->move(public_path("file"),$input);
+        //     // $request->file('signature')->public_path('users_img', $input['signature']);
+        // }
         users::create($input);
         return redirect('users')->with('message','Se ha creado correctamente el usuario');
     }
@@ -112,7 +125,7 @@ class UsersController extends Controller
             'name'=> 'required',
             'email' =>'required',
             'password' =>'required',
-            'signature' => 'required',
+            'signature' => 'required|mimes:png,jpg,jpeg',
             'direction_id' => 'required',
             'typeofuser_id' => 'required'
 
@@ -122,7 +135,8 @@ class UsersController extends Controller
             'name.required' => 'El nombre es requerido',
             'email.required' => 'El correo es requerido',
             'password.required' => 'La contraseña es requerida',
-            'signature.required' => 'La firma es requerida',
+            'signature.required' => 'La imagen de la firma es requerida',
+            'signature.mimes' => 'El archivo no es valido',
             'direction_id.required' => 'La dirección es requerida',
             'typeofuser_id.required' => 'El Tipo de usuario es requerido',
         ];
@@ -130,6 +144,13 @@ class UsersController extends Controller
         $this->validate($request, $rules, $message);
         $input=$request->all();
         $input['password']=bcrypt($request->password);
+
+        if( isset($input["signature"])){
+            $input["signature"] = $fileName = time().'.'.$input["signature"]->extension();
+    
+            $request->signature->move(public_path("file"),$fileName);
+          }
+          
         $user->update($input);
         return redirect('users')->with('info','Se ha actualizado el registro correctamente');
     }
@@ -144,7 +165,7 @@ class UsersController extends Controller
     {
         $user = users::findOrFail($id);
         $user->delete();
-        return redirect('users')->with('danger','correctamente el usuario');
+        return back()->with('danger','correctamente el usuario');
     }
 }
 

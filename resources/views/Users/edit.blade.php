@@ -33,7 +33,7 @@
             </div>
             <div class="card-body">
                 
-            <form action="{{url('users/' .$users->id) }}" method="post">
+            <form action="{{url('users/' .$users->id) }}" enctype="multipart/form-data" method="post">
                 {!! csrf_field() !!}
                 @include('components.flash_alerts') 
                 @method("PATCH")
@@ -53,14 +53,14 @@
                 @error('password')
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
-                <label for="formFile" class="form-label">Selecciona tu archivo de FIRMA</label>
-                <input class="form-control" type="file" id="signature" name="signature"value="{{$users->signature}}">
+                <label for="formFile" class="form-label">Selecciona la imagen de tu firma</label>
+                <input class="form-control" type="file" id="signature" name="signature"value="{{old('signature') ? old('signature') : $users->signature}}">
                 @error('signature')
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
                 <label for=""> Dirección:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="direction_id" value="{{$users->direction_id}}">
-                <option value="{{ old('direction_id') ? old('direction_id') : $users->password}}">Elige la dirección</option>
+                <option value="{{ old('direction_id') ? old('direction_id') : $users->direction_id}}">{{$users->directions->teaching}}--{{$users->directions->career}}</option>
                         @foreach($directions as $direction)   
                     <option value={{$direction->id}}>{{$direction->teaching}}--{{$direction->career}}</option>
                        @endforeach
@@ -71,7 +71,7 @@
                 <!-- <input class="form-control" type="text" id="direction_id" name="direction_id" value="{{$users->direction_id}}"> -->
                 <label for=""> Tipo de usuario:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="typeofuser_id" value="{{$users->typeofuser_id}}">
-                <option value="">Elige el tipo de usuario</option>
+                <option value="{{ old('typeofuser_id') ? old('typeofuser_id'): $users->typeofuser_id}}">{{$users->typeofusers->name}}</option>
                         @foreach($typeofusers as $typeofuser)   
                     <option value={{$typeofuser->id}}>{{$typeofuser->name}}</option>
                        @endforeach

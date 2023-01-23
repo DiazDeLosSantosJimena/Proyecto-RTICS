@@ -29,16 +29,16 @@
     <span>Tipo de usuario</span></a>
 </li>
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active2">
-    <a class="nav-link" href="/directions">
-    <i class="fa-solid fa-route"></i>       
-    <span>Direccion</span></a>
-</li>
-<!-- Nav Item - Dashboard -->
 <li class="nav-item active3">
     <a class="nav-link" href="/classrooms">
     <i class="fa-solid fa-landmark"></i>
     <span>Aulas</span></a>
+</li>
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active2">
+    <a class="nav-link" href="/directions">
+    <i class="fa-solid fa-route"></i>       
+    <span>Direccion</span></a>
 </li>
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active4">

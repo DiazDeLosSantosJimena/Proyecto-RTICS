@@ -15,9 +15,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = users::all();
-
-         return Response()->json(['Usuario'=>$users],200);
+        // $users = users::all();
+        $users = users::select(('users.id AS idusers'),'users.name','email','password','signature',('directions.teaching    AS named'),'directions.career',('typeofusers.name AS typeuser'))
+        ->join('directions','users.direction_id','directions.id')        
+        ->join('typeofusers','users.typeofuser_id','typeofusers.id')->get();
+        return Response()->json(['Usuario'=>$users],200);
     }
 
     /**

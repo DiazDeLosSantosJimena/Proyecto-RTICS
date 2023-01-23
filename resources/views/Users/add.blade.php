@@ -34,7 +34,7 @@
             </div>
             <div class="card-body">
                 
-            <form action="{{ url('users') }}" method="post">
+            <form action="{{ url('users') }}" enctype="multipart/form-data" method="post">
                 {!! csrf_field() !!}
                 @include('components.flash_alerts') 
                 <label for=""> Nombre completo:</label>
@@ -52,7 +52,7 @@
                 @error('password')
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
-                <label for="formFile" class="form-label">Selecciona tu archivo de FIRMA</label>
+                <label for="formFile" class="form-label">Selecciona la imagen de tu firma</label>
                 <input class="form-control" type="file" id="signature" name="signature" value="{{old('signature')}}">
                 @error('signature')
                   <small class="form-text text-danger">{{$message}}</small>

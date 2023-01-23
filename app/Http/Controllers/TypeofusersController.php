@@ -90,7 +90,7 @@ class TypeofusersController extends Controller
     {
         $typeofuser = typeofusers::findOrFail($id);
         $typeofuser->delete();
-        return redirect('typeofusers')->with('danger','correctamente el tipo de usuario');
+        return back()->with('danger','correctamente el tipo de usuario');
     }
 }
 

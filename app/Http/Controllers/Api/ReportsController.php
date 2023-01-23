@@ -15,7 +15,10 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $reports = reports::all();
+        // $reports = reports::all();
+        $reports = reports::select(('reports.id AS idReport'),'reports.description','status',('directions.teaching    AS named'),('users.name AS user'))
+        ->join('directions','reports.direction_id','directions.id')        
+        ->join('users','reports.user_id','users.id')->get();
 
          return Response()->json(['Reportes'=>$reports],200);
     }
@@ -42,9 +45,12 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        $report = reports::find($id);
+        $reports = reports::select($id)(('reports.id AS idReport'),'reports.description','status',('directions.teaching    AS named'),('users.name AS user'))
+        ->join('directions','reports.direction_id','directions.id')        
+        ->join('users','reports.user_id','users.id')
+        ->get();
 
-        return Response()->json($report,200);
+        return Response()->json($reports,200);
     }
 
     /**

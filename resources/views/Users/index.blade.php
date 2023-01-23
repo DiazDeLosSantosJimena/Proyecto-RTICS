@@ -93,7 +93,7 @@
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->signature}}</td>
+                                            <td><img src="{{ asset ('file/'.$user->signature) }}": style="width: 100px;"></td>
                                             <td>{{$user->directions->teaching}}--{{ $user->directions->career}}</td>
                                             <td>{{$user->typeofusers->name}}</td>
                                             <td>    

@@ -43,25 +43,29 @@ class ReportsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $rules =[
             'description'=> 'required',
-            'status' =>'required',
+        
             'direction_id' =>'required',
             'user_id' => 'required'
         ];
 
         $message = [
             'description.required' => 'La descripción es requerida',
-            'status.required' => 'El status es requerido',
             'direction_id.required' => 'La dirección es requerida',
             'user_id.required' => 'El usuario es requerido',
         ];
 
         $this->validate($request, $rules, $message);
 
-        $input=$request->all();
-        reports::create($input);
+        // $input=$request->all();
+        reports::create(array(
+            'description' =>$request->input('description'),
+            'status' =>'Activo',
+            'direction_id'=>$request->input('direction_id'),
+            'user_id'=>$request->input('user_id'),
+        ));
         return redirect('reports')->with('message','Se ha creado correctamente el reporte');
     }
 
@@ -119,7 +123,7 @@ class ReportsController extends Controller
 
         $input=$request->all();
         $report->update($input);
-        return redirect('reports')->with('message','Se ha actualizado el registro correctamente');
+        return redirect('reports')->with('info','Se ha actualizado el registro correctamente');
     }
 
     /**
@@ -132,7 +136,7 @@ class ReportsController extends Controller
     {
         $report = reports::findOrFail($id);
         $report->delete();
-        return redirect('reports')->with('danger','correctamente el reporte');
+        return back()->with('danger','correctamente el reporte');
     }
 }
 

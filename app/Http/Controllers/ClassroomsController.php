@@ -113,6 +113,6 @@ class ClassroomsController extends Controller
     {
         $classroom = classrooms::findOrFail($id);
         $classroom->delete();
-        return redirect('classrooms')->with('danger','correctamente el aula');
+        return back()->with('danger','correctamente el aula');
     }
 }

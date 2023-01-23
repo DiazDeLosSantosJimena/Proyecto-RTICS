@@ -125,7 +125,7 @@ class DirectionsController extends Controller
     {
          $direction = directions::findOrFail($id);
          $direction->delete();
-         return redirect('directions')->with('danger','correctamente la dirección');
+         return back()->with('danger','correctamente la dirección');
 
     }
 }
