@@ -31,6 +31,7 @@ class directions extends Model
         return $this->hasMany(users::class, 'typeofusers_id', 'id');
 
     }
+    
      public function classrooms() {
          return $this->belongsTo(classrooms::class,'classroom_id')->withTrashed();
 

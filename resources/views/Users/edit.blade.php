@@ -80,7 +80,7 @@
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
                 <!-- <input class="form-control" type="text" id="typeofuser_id" name="typeofuser_id" value="{{$users->typeofuser_id}}"> -->
-                <div class="row">
+                <div class="col-auto">
                 <a class="btn btn-danger m-3"  href="/users" >Cancelar</a>
                     <button type="submit" class="btn btn-primary m-3" value="update">Guadar</button>
 

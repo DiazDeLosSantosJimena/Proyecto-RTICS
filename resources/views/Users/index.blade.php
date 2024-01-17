@@ -99,12 +99,11 @@
                                             <td>    
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                                         <a class="btn btn-success m-3" href="users/{{$user->id}}" ><i class="fa-regular fa-eye"></i></a>
-                                                        <a class="btn btn-warning m-3" href="users/{{$user->id}}/edit"  ><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a class="btn btn-warning m-3" href="users/{{$user->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                                         <form action="users/{{$user->id}}" method="POST">
                                                         {!! csrf_field() !!}
                                                         @method("delete")
                                                             
-                                                    
                                                         <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
                                                         </form>
                                                         <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->

@@ -101,6 +101,7 @@
                                                         {!! csrf_field() !!}
                                                         @method("delete")
                                                             
+                                                        
                                                         <button class="btn btn-danger m-3" type="submit"><i class="fa-solid fa-trash"></i></button>
                                                         </form>
                                                         <!-- <a class="btn btn-danger m-3" data-toggle="modal" data-target="#logoutModal"><i class="fa-solid fa-trash"></i></a> -->

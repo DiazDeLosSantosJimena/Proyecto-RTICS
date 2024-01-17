@@ -16,9 +16,9 @@ class UsersController extends Controller
     public function index()
     {   
         $users = users::all();
-        /* $users = users::select(('users.id AS idusers'),'users.name','email',('directions.teaching    AS named'),'directions.career',('typeofusers.name AS typeuser'))
-        ->join('directions','users.direction_id','directions.id')        
-        ->join('typeofusers','users.typeofuser_id','typeofusers.id')->get(); */
+        //  $users = users::select(('users.id AS idusers'),'users.name','email',('directions.teaching    AS named'),'directions.career',('typeofusers.name AS typeuser'))
+        // ->join('directions','users.direction_id','directions.id')        
+        // ->join('typeofusers','users.typeofuser_id','typeofusers.id')->get(); 
 
         //return $users;
         return view('Users.index', compact('users'));

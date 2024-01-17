@@ -55,7 +55,6 @@
                 @error('status')
                   <small class="form-text text-danger">{{$message}}</small>
                 @enderror 
-
                 <!-- <input class="form-control" type="text" id="status" name="status" value="{{$reports->status}}"> -->
                 <label for=""> Dirección:</label>
                 <select class="form-control form-select" aria-label="Default select example" name="direction_id" value="{{$reports->directions->name}}">

@@ -56,6 +56,8 @@ class DirectionsController extends Controller
         $input=$request->all();
         directions::create($input);
         return redirect('directions')->with('message','Se ha creado correctamente la dirección');
+
+        
     }
 
     

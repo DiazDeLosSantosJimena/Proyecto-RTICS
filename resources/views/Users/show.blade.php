@@ -38,7 +38,7 @@
              <h5 class="card-title"> Firma: <img src="{{ asset ('file/'.$users->signature) }}": style="width: 100px;"></h5>
              <h5 class="card-title"> Dirección: {{ $users->directions->teaching}}--{{ $users->directions->career}}</h5>
              <h5 class="card-title"> Tipo de usuario: {{ $users->typeofusers->name }}</h5>
-             <a class="btn btn-outline-success" m-3" href="/users" ><i class="fa-solid fa-arrow-left"></i></a>
+             <a class="btn btn-outline-success"  href="/users" ><i class="fa-solid fa-arrow-left"></i></a>
             </div>
 
     

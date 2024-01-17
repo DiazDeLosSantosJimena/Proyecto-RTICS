@@ -46,7 +46,6 @@ class ReportsController extends Controller
     { 
         $rules =[
             'description'=> 'required',
-        
             'direction_id' =>'required',
             'user_id' => 'required'
         ];
